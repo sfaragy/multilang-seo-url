@@ -1,0 +1,165 @@
+RewriteEngine on 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^/?(.*)/+$ /$1 [R=302,L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !\.php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f 
+RewriteRule ^/?(.*?)/?$ $1.php
+
+
+RewriteRule ^th([^?&]*)$ /$1 [QSA,L]
+RewriteRule ^cn([^?&]*)$ /$1 [QSA,L]
+RewriteRule ^en(.*)$ /$1 [L,R=301]
+# ==============================================
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_URI} (.*)/$
+# RewriteRule ^(.*)/$ $1 [L,R=301]
+
+
+# DirectoryIndex index.php 
+
+
+# RewriteCond $1 !^(index\.php|images|assets|css|js|robots\.txt|favicon\.ico)
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^(.*)$ ./index.php/$1 [L,QSA]
+
+
+
+# RewriteCond $2 !^(about\.php)?$
+# RewriteRule ^()/(.+) /$1/about.php?path=$2 [L]
+
+# =================================
+# RewriteEngine On
+
+# # Hide the "pages" directory and all PHP files from direct access.
+# RewriteRule ^th\b|\.php$ - [R=404]
+# # Rewrite clean-URL pages to the PHP files inside the "pages" directory:
+# # If the request isn't a file.
+# RewriteCond %{REQUEST_FILENAME} !-f
+# # If the request isn't a folder.
+# RewriteCond %{REQUEST_FILENAME} !-d
+# # If the PHP page file exists.
+# RewriteCond %{DOCUMENT_ROOT}/th/$0.php -f
+# # /your-page?param=foo is rewritten to /pages/your-page.php?param=foo
+# # The L flag isn't suffisient because the rewrite rule to protect PHP files
+# # above will take over in the second loop over all the rewrite rules. To stop
+# # here we can use the newly END flag which stops completely the rewrite engine.
+# RewriteRule ^.*$ $0.php [END,QSA]
+
+
+# ====================
+
+# RewriteCond $1 !^(about\.php|images|assets|css|js|robots\.txt|favicon\.ico)
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^(.*)$ ./about.php/$1 [L,QSA]
+
+
+# Rewrite  ^/th$ / [L]
+
+# DirectoryIndex index.php
+
+
+# ================================
+# <IfModule mod_rewrite.c>
+# # URL rewriting module activation
+# RewriteEngine on
+# URL rewriting rules
+# RewriteRule ^([a-z0-9]+)\-([a-z0-9]+)(\-[_a-zA-Z0-9-]*)/[_a-zA-Z0-9-]*\.jpg$ /market/img/p/$1-$2$3.jpg [L]
+# RewriteRule ^([0-9]+)\-([0-9]+)/[_a-zA-Z0-9-]*\.jpg$ /market/img/p/$1-$2.jpg [L]
+# RewriteRule ^([0-9])(\-[_a-zA-Z0-9-]*)?/[_a-zA-Z0-9-]*\.jpg$ /market/img/p/$1/$1$2.jpg [L]
+# RewriteRule ^([0-9])([0-9])(\-[_a-zA-Z0-9-]*)?/[_a-zA-Z0-9-]*\.jpg$ /market/img/p/$1/$2/$1$2$3.jpg [L]
+# RewriteRule ^([0-9])([0-9])([0-9])(\-[_a-zA-Z0-9-]*)?/[_a-zA-Z0-9-]*\.jpg$ /market/img/p/$1/$2/$3/$1$2$3$4.jpg [L]
+# RewriteRule ^([0-9])([0-9])([0-9])([0-9])(\-[_a-zA-Z0-9-]*)?/[_a-zA-Z0-9-]*\.jpg$ /market/img/p/$1/$2/$3/$4/$1$2$3$4$5.jpg [L]
+# RewriteRule ^([0-9])([0-9])([0-9])([0-9])([0-9])(\-[_a-zA-Z0-9-]*)?/[_a-zA-Z0-9-]*\.jpg$ /market/img/p/$1/$2/$3/$4/$5/$1$2$3$4$5$6.jpg [L]
+# RewriteRule ^([0-9])([0-9])([0-9])([0-9])([0-9])([0-9])(\-[_a-zA-Z0-9-]*)?/[_a-zA-Z0-9-]*\.jpg$ /market/img/p/$1/$2/$3/$4/$5/$6/$1$2$3$4$5$6$7.jpg [L]
+# RewriteRule ^([0-9])([0-9])([0-9])([0-9])([0-9])([0-9])([0-9])(\-[_a-zA-Z0-9-]*)?/[_a-zA-Z0-9-]*\.jpg$ /market/img/p/$1/$2/$3/$4/$5/$6/$7/$1$2$3$4$5$6$7$8.jpg [L]
+# RewriteRule ^([0-9])([0-9])([0-9])([0-9])([0-9])([0-9])([0-9])([0-9])(\-[_a-zA-Z0-9-]*)?/[_a-zA-Z0-9-]*\.jpg$ /market/img/p/$1/$2/$3/$4/$5/$6/$7/$8/$1$2$3$4$5$6$7$8$9.jpg [L]
+# RewriteRule ^c/([0-9]+)(\-[_a-zA-Z0-9-]*)/[_a-zA-Z0-9-]*\.jpg$ /market/img/c/$1$2.jpg [L]
+# RewriteRule ^c/([a-zA-Z-]+)/[a-zA-Z0-9-]+\.jpg$ /market/img/c/$1.jpg [L]
+# RewriteRule ^c/([0-9]+)/[a-zA-Z0-9-]+\.jpg$ /market/img/c/$1.jpg [L]
+# RewriteRule ^([a-z]{2})/[a-zA-Z0-9-]*/([0-9]+)\-[a-zA-Z0-9-]*\.html /market/product.php?id_product=$2&isolang=$1 [QSA,L]
+# RewriteRule ^([a-z]{2})/([0-9]+)\-[a-zA-Z0-9-]*\.html /market/product.php?id_product=$2&isolang=$1 [QSA,L]
+# RewriteRule ^([a-z]{2})/([0-9]+)\-[a-zA-Z0-9-]*(/[a-zA-Z0-9-]*)+ /market/category.php?id_category=$2&isolang=$1&noredirect=1 [QSA,L]
+# RewriteRule ^([a-z]{2})/([0-9]+)\-[a-zA-Z0-9-]* /market/category.php?id_category=$2&isolang=$1 [QSA,L]
+# RewriteRule ^([a-z]{2})/content/([0-9]+)\-[a-zA-Z0-9-]* /market/cms.php?isolang=$1&id_cms=$2 [QSA,L]
+# RewriteRule ^([a-z]{2})/content/category/([0-9]+)\-[a-zA-Z0-9-]* /market/cms.php?isolang=$1&id_cms_category=$2 [QSA,L]
+# RewriteRule ^([a-z]{2})/([0-9]+)__[a-zA-Z0-9-]* /market/supplier.php?isolang=$1&id_supplier=$2 [QSA,L]
+# RewriteRule ^([a-z]{2})/([0-9]+)_[a-zA-Z0-9-]* /market/manufacturer.php?isolang=$1&id_manufacturer=$2 [QSA,L]
+# RewriteRule ^([0-9]+)(\-[_a-zA-Z0-9-]*)/[_a-zA-Z0-9-]*\.jpg$ /market/img/c/$1$2.jpg [L]
+# RewriteRule ^([0-9]+)\-[a-zA-Z0-9-]*\.html /market/product.php?id_product=$1 [QSA,L]
+# RewriteRule ^[a-zA-Z0-9-]*/([0-9]+)\-[a-zA-Z0-9-]*\.html /market/product.php?id_product=$1 [QSA,L]
+# RewriteRule ^([0-9]+)\-[a-zA-Z0-9-]*(/[a-zA-Z0-9-]*)+ /market/category.php?id_category=$1&noredirect=1 [QSA,L]
+# RewriteRule ^([0-9]+)\-[a-zA-Z0-9-]* /market/category.php?id_category=$1 [QSA,L]
+# RewriteRule ^([0-9]+)__([a-zA-Z0-9-]*) /market/supplier.php?id_supplier=$1 [QSA,L]
+# RewriteRule ^([0-9]+)_([a-zA-Z0-9-]*) /market/manufacturer.php?id_manufacturer=$1 [QSA,L]
+# RewriteRule ^content/([0-9]+)\-([a-zA-Z0-9-]*) /market/cms.php?id_cms=$1 [QSA,L]
+# RewriteRule ^content/category/([0-9]+)\-([a-zA-Z0-9-]*) /market/cms.php?id_cms_category=$1 [QSA,L]
+# RewriteRule ^([a-z]{2})/vendor/name-start-with-([a-zA-Z]*) /market/modules/agilesellerproducts/agilesellers.php?filter=$2 [QSA,L]
+# RewriteRule ^([a-z]{2})/vendor/([0-9]+)\-([a-zA-Z0-9-]*) /market/modules/agilesellerproducts/agileseller.php?id_seller=$2&seller_name=$3 [QSA,L]
+# RewriteRule ^([a-z]{2})/countries/([0-9]+)\-([a-zA-Z0-9-]*) /market/modules/agilesellerproducts/sellercountry.php?id_seller_country=$2 [QSA,L]
+# RewriteRule ^vendor/name-start-with-([a-zA-Z]*) /market/modules/agilesellerproducts/agilesellers.php?filter=$1 [QSA,L]
+# RewriteRule ^vendor/([0-9]+)\-([a-zA-Z0-9-]*) /market/modules/agilesellerproducts/agileseller.php?id_seller=$1&seller_name=$2 [QSA,L]
+# RewriteRule ^countries/([0-9]+)\-([a-zA-Z0-9-]*) /market/modules/agilesellerproducts/sellercountry.php?id_seller_country=$1 [QSA,L]
+# RewriteRule ^([a-z]{2})/seller /market//modules/agilemultipleseller/myselleraccount.php [QSA,L]
+# RewriteRule ^seller /market//modules/agilemultipleseller/myselleraccount.php [QSA,L]
+# RewriteRule ^en/page-not-found$ /market/404.php?isolang=en [QSA,L]
+# RewriteRule ^en/address$ /market/address.php?isolang=en [QSA,L]
+# RewriteRule ^en/addresses$ /market/addresses.php?isolang=en [QSA,L]
+# RewriteRule ^en/authentication$ /market/authentication.php?isolang=en [QSA,L]
+# RewriteRule ^en/best-sales$ /market/best-sales.php?isolang=en [QSA,L]
+# RewriteRule ^en/cart$ /market/cart.php?isolang=en [QSA,L]
+# RewriteRule ^en/contact-us$ /market/contact-form.php?isolang=en [QSA,L]
+# RewriteRule ^en/discount$ /market/discount.php?isolang=en [QSA,L]
+# RewriteRule ^en/guest-tracking$ /market/guest-tracking.php?isolang=en [QSA,L]
+# RewriteRule ^en/order-history$ /market/history.php?isolang=en [QSA,L]
+# RewriteRule ^en/identity$ /market/identity.php?isolang=en [QSA,L]
+# RewriteRule ^en/manufacturers$ /market/manufacturer.php?isolang=en [QSA,L]
+# RewriteRule ^en/my-account$ /market/my-account.php?isolang=en [QSA,L]
+# RewriteRule ^en/new-products$ /market/new-products.php?isolang=en [QSA,L]
+# RewriteRule ^en/order$ /market/order.php?isolang=en [QSA,L]
+# RewriteRule ^en/order-follow$ /market/order-follow.php?isolang=en [QSA,L]
+# RewriteRule ^en/quick-order$ /market/order-opc.php?isolang=en [QSA,L]
+# RewriteRule ^en/order-slip$ /market/order-slip.php?isolang=en [QSA,L]
+# RewriteRule ^en/password-recovery$ /market/password.php?isolang=en [QSA,L]
+# RewriteRule ^en/prices-drop$ /market/prices-drop.php?isolang=en [QSA,L]
+# RewriteRule ^en/search$ /market/search.php?isolang=en [QSA,L]
+# RewriteRule ^en/sitemap$ /market/sitemap.php?isolang=en [QSA,L]
+# RewriteRule ^en/stores$ /market/stores.php?isolang=en [QSA,L]
+# RewriteRule ^en/supplier$ /market/supplier.php?isolang=en [QSA,L]
+# RewriteRule ^en$ /market/en/ [QSA,L]
+# RewriteRule ^en/([^?&]*)$ /market/$1?isolang=en [QSA,L]
+# RewriteRule ^it/pagina-non-trovata$ /market/404.php?isolang=it [QSA,L]
+# RewriteRule ^it/indirizzo$ /market/address.php?isolang=it [QSA,L]
+# RewriteRule ^it/indirizzi$ /market/addresses.php?isolang=it [QSA,L]
+# RewriteRule ^it/autenticazione$ /market/authentication.php?isolang=it [QSA,L]
+# RewriteRule ^it/vendite-migliori$ /market/best-sales.php?isolang=it [QSA,L]
+# RewriteRule ^it/carrello$ /market/cart.php?isolang=it [QSA,L]
+# RewriteRule ^it/contattaci$ /market/contact-form.php?isolang=it [QSA,L]
+# RewriteRule ^it/sconto$ /market/discount.php?isolang=it [QSA,L]
+# RewriteRule ^it/ospite-monitoraggio$ /market/guest-tracking.php?isolang=it [QSA,L]
+# RewriteRule ^it/storico-ordine$ /market/history.php?isolang=it [QSA,L]
+# RewriteRule ^it/identita$ /market/identity.php?isolang=it [QSA,L]
+# RewriteRule ^it/produttori$ /market/manufacturer.php?isolang=it [QSA,L]
+# RewriteRule ^it/il-mio-account$ /market/my-account.php?isolang=it [QSA,L]
+# RewriteRule ^it/nuovi-prodotti$ /market/new-products.php?isolang=it [QSA,L]
+# RewriteRule ^it/ordine$ /market/order.php?isolang=it [QSA,L]
+# RewriteRule ^it/seguito-ordine$ /market/order-follow.php?isolang=it [QSA,L]
+# RewriteRule ^it/ordine-veloce$ /market/order-opc.php?isolang=it [QSA,L]
+# RewriteRule ^it/nota-di-ordine$ /market/order-slip.php?isolang=it [QSA,L]
+# RewriteRule ^it/password-recupero$ /market/password.php?isolang=it [QSA,L]
+# RewriteRule ^it/riduzione-prezzi$ /market/prices-drop.php?isolang=it [QSA,L]
+# RewriteRule ^it/cerca$ /market/search.php?isolang=it [QSA,L]
+# RewriteRule ^it/sitemap$ /market/sitemap.php?isolang=it [QSA,L]
+# RewriteRule ^it/negozi$ /market/stores.php?isolang=it [QSA,L]
+# RewriteRule ^it/fornitore$ /market/supplier.php?isolang=it [QSA,L]
+# RewriteRule ^it$ /market/it/ [QSA,L]
+# RewriteRule ^it/([^?&]*)$ /$1?isolang=it [QSA,L]
+
+
+
+# RewriteRule ^market/en(.*)$ /market$1 [L,R=301]
+# </IfModule>
+
