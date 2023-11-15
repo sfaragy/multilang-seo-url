@@ -8,25 +8,27 @@ http://localhost/
 #If you want to run it in Docker
 
 If you want to use the docker container then the docker-compose.yml and Dockerfile also available
-### Step 1
+### Step 1 Run the command below
+
 `````
 docker run --rm -it httpd:2.4 cat /usr/local/apache2/conf/httpd.conf > httpd.conf
 `````
 
-##Step 2 build the project wish docker container:
-```````
-docker-compose build
-``````
+### Step 2 build the project wish docker container:
 
-## Step3: start the project with docker container:
-```````
+`````
+docker-compose build
+`````
+
+### Step3: start the project with docker container:
+`````
 docker-compose up -d
-``````
+`````
 
 ### Step4: http://localhost:8888/
 
-##To stop the project with docker container:
-```````
+### To stop the project in docker container:
+`````
 docker-compose down -d
-``````
+`````
 
